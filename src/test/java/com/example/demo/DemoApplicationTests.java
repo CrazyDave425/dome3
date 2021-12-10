@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.Service.TestService;
 import com.example.demo.Service.TspService;
+import com.example.demo.pojo.PutStorageInfo;
 import com.example.demo.pojo.Tsp;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
@@ -13,7 +15,8 @@ import java.util.List;
 class DemoApplicationTests {
     @Autowired
     TspService tspService;
-
+    @Autowired
+    TestService testService;
     @Test
     void contextLoads() {
         List<Tsp> findlist = tspService.findlist();
@@ -68,6 +71,13 @@ class DemoApplicationTests {
                 zhyy = zhyy + lcyy;
             }
             boolean up = tspService.up(zhyy, id);
+        }
+    }
+    @Test
+    void test(){
+        List<PutStorageInfo> putStorageInfos = testService.readExcelByPOI("E:\\报批\\experiment_template2.xls");
+        for (PutStorageInfo putStorageInfo : putStorageInfos) {
+            System.out.println(putStorageInfo);
         }
     }
 
